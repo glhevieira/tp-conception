@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation BDD — Veto Projet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustements spécifiques pour un rendu "Pro" */
+        :root { --accent: #00d2ff; --bg-card: #161b22; }
+        .sql-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #21262d; border-radius: 8px 8px 0 0; border-bottom: 1px solid #30363d; }
+        .code-window { border-radius: 8px; border: 1px solid #30363d; overflow: hidden; margin-top: 20px; }
+        .img-container { position: relative; cursor: zoom-in; transition: transform 0.3s ease; }
+        .img-container:hover { transform: scale(1.02); }
+        .tech-tag { background: rgba(0, 210, 255, 0.1); color: var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid var(--accent); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">GV<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Portfolio</a></li>
+                <li><a href="#conception">Modélisation</a></li>
+                <li><a href="#script">Développement SQL</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="padding: 100px 20px 60px;">
+            <div class="hero-container">
+                <span class="tech-tag">SQL / MySQL / MariaDB</span>
+                <h1 style="margin: 15px 0;">Système de Gestion <span>Vétérinaire</span></h1>
+                <p>Conception d'une infrastructure de données robuste pour le suivi clinique et biologique d'un parc animalier.</p>
+                <div class="hero-actions" style="margin-top: 30px;">
+                    <a href="script_veto_sql (1).sql" download class="btn-main">
+                        <i class="fas fa-file-code"></i> Source SQL
+                    </a>
+                    <a href="#conception" class="btn-sub">Étude Technique</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="conception" class="section">
+            <h2 class="section-title">Analyse Structurelle</h2>
+            <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <h3>Modèle Conceptuel (MCD)</h3>
+                            <i class="fas fa-project-diagram" style="color: var(--accent);"></i>
+                        </div>
+                        <div class="img-container">
+                            <img src="mcd (1).png" alt="MCD" style="width: 100%; border-radius: 4px;">
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #8b949e;">Identification des entités métiers et des cardinalités de gestion.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <h3>Modèle Logique (MLD)</h3>
+                            <i class="fas fa-table" style="color: var(--accent);"></i>
+                        </div>
+                        <div class="img-container">
+                            <img src="mld (1).png" alt="MLD" style="width: 100%; border-radius: 4px;">
+                        </div>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #8b949e;">Schéma relationnel optimisé incluant l'intégrité référentielle.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="script" class="section">
+            <h2 class="section-title">Implémentation SQL</h2>
+            <div class="code-window">
+                <div class="sql-header">
+                    <div style="display: flex; gap: 8px;">
+                        <span style="width:12px; height:12px; background:#ff5f56; border-radius:50%"></span>
+                        <span style="width:12px; height:12px; background:#ffbd2e; border-radius:50%"></span>
+                        <span style="width:12px; height:12px; background:#27c93f; border-radius:50%"></span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: #8b949e; font-family: monospace;">database_setup.sql</span>
+                </div>
+                <pre style="margin: 0; background: #0d1117; padding: 30px; color: #d1d5db; font-size: 14px; line-height: 1.6; overflow-x: auto;">
+<span style="color: #8b949e;">-- Table de définition des soins appliqués</span>
+<span style="color: #ff7b72;">CREATE TABLE</span> <span style="color: #d2a8ff;">Soins</span> (
+  code_soin <span style="color: #79c0ff;">INT</span> <span style="color: #ff7b72;">NOT NULL</span>,
+  type_soin <span style="color: #79c0ff;">VARCHAR</span>(50) <span style="color: #ff7b72;">NOT NULL</span>,
+  <span style="color: #ff7b72;">CONSTRAINT</span> Soins_PK <span style="color: #ff7b72;">PRIMARY KEY</span> (code_soin)
+) <span style="color: #79c0ff;">ENGINE</span>=InnoDB;
+
+<span style="color: #8b949e;">-- Hiérarchie taxonomique des espèces</span>
+<span style="color: #ff7b72;">CREATE TABLE</span> <span style="color: #d2a8ff;">Familles</span> (
+  code_famille <span style="color: #79c0ff;">INT</span> <span style="color: #ff7b72;">NOT NULL</span>,
+  nom_famille <span style="color: #79c0ff;">VARCHAR</span>(50) <span style="color: #ff7b72;">NOT NULL</span>,
+  code_ordre <span style="color: #79c0ff;">INT</span> <span style="color: #ff7b72;">NOT NULL</span>,
+  <span style="color: #ff7b72;">CONSTRAINT</span> Familles_PK <span style="color: #ff7b72;">PRIMARY KEY</span> (code_famille),
+  <span style="color: #ff7b72;">CONSTRAINT</span> FK_ordre <span style="color: #ff7b72;">FOREIGN KEY</span> (code_ordre) <span style="color: #ff7b72;">REFERENCES</span> Ordre(code_ordre)
+) <span style="color: #79c0ff;">ENGINE</span>=InnoDB;</pre>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 80px; padding-bottom: 40px; text-align: center; color: #8b949e; font-size: 0.9rem;">
+        <p>© 2026 Guilherme Vieira — BTS SIO SLAM</p>
+    </footer>
+
+</body>
+</html>
